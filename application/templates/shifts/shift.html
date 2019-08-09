@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<style>
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+        </style>
+<table>
+      <tr>
+            <th>Day</th>
+            <th>Hour</th>
+            <th>Doctors needed</th>
+            <th>Nurses needed</th>
+            <th>Practical nurses needed</th>
+      </tr>
+      <tr>
+            <form method="POST" action="{{ url_for('create_shift') }}">
+                        <th>{% for day in days %}
+                              <input type="radio" name="day" value={{ day }}>{{ day }}</input><br>
+                        {% endfor %}
+                        </th>
+                        <th>
+                        {% for hour in hours %}
+                              <input type="radio" name="hour" value={{ hour }}>{{ hour }}</input><br>
+                        {% endfor %}
+                        </th>
+                        <th><input type="text" name="doctorsNeeded"/></th>
+                        <th><input type="text" name="nursesNeeded"/></th>
+                        <th><input type="text" name="practicalNursesNeeded"/></th>
+                        <th><input type="submit" value="Submit new working hour"/></th>
+                  </form>
+      </tr>
+</table>
+
+{% endblock %}

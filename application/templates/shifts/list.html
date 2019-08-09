@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+</style>
+<table>
+    <tr>
+        <th>Day</th>
+        <th>Shift</th>
+        <th colspan="3">Doctors needed</th>
+        <th colspan="3">Nurses needed</th>
+        <th colspan="3">Practical nurses needed</th>
+      </tr>
+    {% for shift in shifts %}
+      <tr>
+        <td>{{ shift.day }}</td>
+        <td>{{ shift.hour }}</td>
+        <td>{{ shift.doctorsNeeded }}</td>
+        <td>
+            <form method="POST" action="{{ url_for('shift_set_staff_needed', shift_id=shift.id) }}">
+              <input type="submit" name="d+" value="+"/>
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="{{ url_for('shift_set_staff_needed', shift_id=shift.id) }}">
+              <input type="submit" name="d-" value="-"/>
+            </form>
+        </td>
+        <td>{{ shift.nursesNeeded }}</td>
+        <td>
+            <form method="POST" action="{{ url_for('shift_set_staff_needed', shift_id=shift.id) }}">
+              <input type="submit" name="n+" value="+"/>
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="{{ url_for('shift_set_staff_needed', shift_id=shift.id) }}">
+              <input type="submit" name="n-" value="-"/>
+            </form>
+        </td>
+        <td>{{ shift.practicalNursesNeeded }}</td>
+        <td>
+            <form method="POST" action="{{ url_for('shift_set_staff_needed', shift_id=shift.id) }}">
+              <input type="submit" name="pn+" value="+"/>
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="{{ url_for('shift_set_staff_needed', shift_id=shift.id) }}">
+              <input type="submit" name="pn-" value="-"/>
+            </form>
+        </td>
+      </tr>
+      {% endfor %}
+</table>
+{% endblock %}
