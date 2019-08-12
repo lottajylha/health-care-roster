@@ -9,29 +9,51 @@
         </style>
 <table>
       <tr>
-            <th>Day</th>
-            <th>Hour</th>
-            <th>Doctors needed</th>
-            <th>Nurses needed</th>
-            <th>Practical nurses needed</th>
+            <th>{{ form.day.label }}</th>
+            <th>{{ form.hour.label }}</th>
+            <th>{{ form.doctorsNeeded.label }}</th>
+            <th>{{ form.nursesNeeded.label }}</th>
+            <th>{{ form.practicalNursesNeeded.label }}</th>
       </tr>
       <tr>
             <form method="POST" action="{{ url_for('create_shift') }}">
-                        <th>{% for day in days %}
-                              <input type="radio" name="day" value={{ day }}>{{ day }}</input><br>
+                        <th>
+                        {% for subfield in form.day %}
+                              {{ subfield }} {{ subfield.label }}</br>
                         {% endfor %}
                         </th>
                         <th>
-                        {% for hour in hours %}
-                              <input type="radio" name="hour" value={{ hour }}>{{ hour }}</input><br>
+                        {% for subfield in form.hour %}
+                              {{ subfield }} {{ subfield.label }}</br>
                         {% endfor %}
                         </th>
-                        <th><input type="text" name="doctorsNeeded"/></th>
-                        <th><input type="text" name="nursesNeeded"/></th>
-                        <th><input type="text" name="practicalNursesNeeded"/></th>
+                        <th>{{ form.doctorsNeeded }}</th>
+                        <th>{{ form.nursesNeeded }}</th>
+                        <th>{{ form.practicalNursesNeeded }}</th>
                         <th><input type="submit" value="Submit new working hour"/></th>
                   </form>
       </tr>
 </table>
+<ul>
+      {% for error in form.day.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+</ul>
+<ul>
+      {% for error in form.doctorsNeeded.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+</ul>
+<ul>
+      {% for error in form.nursesNeeded.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+</ul>
+<ul>
+      {% for error in form.practicalNursesNeeded.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+</ul>
+
 
 {% endblock %}

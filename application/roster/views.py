@@ -1,40 +1,23 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.roster.shifts import Shift
-
-days = [
-    "2019-09-02",
-    "2019-09-03",
-    "2019-09-04",
-    "2019-09-05",
-    "2019-09-06",
-    "2019-09-07",
-    "2019-09-08"
-]
-
-hours = [
-    "7-8",
-    "8-9",
-    "9-10",
-    "10-11",
-    "11-12",
-    "12-13",
-    "13-14",
-    "14-15",
-    "15-16",
-    "16-17"
-]
+from application.roster.forms import ShiftForm
 
 @app.route("/roster/new/")
 def shifts_form():
-    return render_template("shifts/shift.html", hours=hours, days=days)
+    return render_template("shifts/shift.html", form=ShiftForm())
 
 
 @app.route("/roster/", methods=["POST"])
 def create_shift():
-    NewShift = Shift(request.form["day"], request.form["hour"], request.form.get("doctorsNeeded"), request.form.get("nursesNeeded"),request.form.get("practicalNursesNeeded"))
+    form = ShiftForm(request.form)
 
-    db.session().add(NewShift)
+    if not form.validate():
+        return render_template("shifts/shift.html", form = form)
+
+    shift = Shift(form.day.data, form.hour.data, form.doctorsNeeded.data, form.nursesNeeded.data, form.practicalNursesNeeded.data)
+
+    db.session().add(shift)
     db.session().commit()
   
     return redirect(url_for("roster_index"))
