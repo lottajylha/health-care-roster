@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+</style>
+<table>
+    <tr>
+        <th>Employee</th>
+        <th>Position</th>
+        <th>Week minimum</th>
+        <th>Week maximum</th>
+      </tr>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.position }}</td>
+        <td>{{ user.weekMin }}</td>
+        <td>{{ user.weekMax }}</td>
+        <form method="POST" action="{{ url_for('set_weekhours', user_id=user.id) }}">
+            <td>{{ form.weekMin }} </td>
+            <td>{{ form.weekMax }} </td>
+            <th><input type="submit" value="Set weekhours"/></th>
+    {% endfor %}
+        </form>
+      </tr>
+      
+</table>
+{% endblock %}
