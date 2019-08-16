@@ -17,8 +17,8 @@ class LoginForm(FlaskForm):
 class SignupForm(FlaskForm):
 
     name = StringField("Name", [validators.Length(min=4, max=100), validators.Required()])
-    username = StringField("Username", [validators.Length(min=4, max=100), validators.Required()])
-    password = PasswordField("Password", [validators.Length(min=4, max=15), validators.Required()])
+    username = StringField("Username", [validators.Length(min=4, max=20), validators.Required()])
+    password = PasswordField("Password", [validators.Length(min=4, max=10), validators.Required()])
     position = RadioField("Position", [validators.Required()], choices=positions)
     
     class Meta:
