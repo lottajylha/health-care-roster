@@ -30,7 +30,6 @@ def users_index():
 @login_required('Employer')
 def set_weekhours(user_id):
     form = UsersForm(request.form)
-    print('user id: ' + user_id)
     hours = User.get_weekminmax(user_id)
     weekMin = hours[0]
     weekMax = hours[0]

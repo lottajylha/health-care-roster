@@ -22,6 +22,9 @@ def login_required(position="ANY"):
         return decorated_view
     return wrapper
 
+@app.route("/", methods=["GET"])
+def roster():
+    return redirect(url_for("roster_index"))
 
 @app.route("/roster/new/")
 @login_required('Employer')

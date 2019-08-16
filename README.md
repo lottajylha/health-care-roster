@@ -3,12 +3,10 @@
 
 Health Care Roster on terveysaseman työvuorolista, jossa työvuorolistoja laaditaan tunneittain henkilöstövahvuuden ja kiireellisyyden perusteella.
 
-Terveysaseman jokaista aukiolotuntia vastaa jokin kiireellisyysluokka, joka kertoo kyseiselle tunnille tarvittavan lääkärien, sairaanhoitajien ja perushoitajien määrän. Jokaisella työntekijällä (lääkäri, sairaanhoitaja ja perushoitaja) on viikottainen työaikamaksimi, jonka tulee toteutua viikon loppuun mennessä. Mikäli työntekijän viikkomaksimi on ylittynyt, voidaan vuoro antaa kouluttautuneemmalle työntekijälle. Järjestelmä näyttää työvuorolistan hyväksyttynä, jos jokaista aukiolotuntia vastaa oikea määrä oikeanlaisia työntekijöitä (työntekijän taso ja viikkomaksimi toteutuvat).
+Työvuorolistassa on työnantajan lisäämiä työvuoroja, joilla on päivämäärä ja kellonaika. Jokaiselle vuorolle on asetettu tarvittavien lääkäreiden, sairaanhoitajien ja perushoitajien määrät. Työvuorolistasta näkyy jokaiseen työvuoroon ilmottautuneet työntekijät ja puuttuvien työntekijöiden määrä.
+Kirjautuneet työntekijät voivat ilmottautua työvuoroon, mikäli siihen ei ole ilmottautunut tarpeeksi saman tason työntekijöitä (lääkäri, sairaanhoitaja tai perushoitaja). Omia vuoroja voi myös poistaa. Työntekijä näkee myös yhteenvedon omista työvuoroistaan.
 
-
-Terveysasemantyöntekijät (lääkärit, sairaanhoitajat ja perushoitajat) voivat kirjautuessaan tarkastella työvuorolistaa ja henkilökohtaista työvuorolistaansa (vain omat tulevat työtunnit). He näkevät myös raportin menneistä työtunneistaan.
-
-Työvuorolistan ylläpitäjä näkee kirjautuessaan kiireellisyyskalenterin, henkilöstövahvuuskalenterin ja työvuorolistan. Ylläpitäjä voi lisätä, poistaa ja muokata työntekijöiden työvuoroja. Ylläpitäjä lisää myös aukiolotunteihin liittyvät kiireellisyysluokitukset.
+Työnantaja voi lisätä uusia työvuoroja ja nähdä rekisteröityneet työntekijät.
 
 Tietokantakaavio:
 ![Tietokantakaavio](https://user-images.githubusercontent.com/36735637/61955653-258d9f80-afc4-11e9-9df8-bd9abc9d2e9e.png)

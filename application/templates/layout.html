@@ -16,7 +16,7 @@
         <li><a href="{{ url_for('signup_form') }}">Sign up</a></li>
     {% endif %}
         <li><a href="{{ url_for('roster_index') }}">See roster</a></li>
-    {% if current_user.position == 'employer' %}
+    {% if current_user.position == 'Employer' %}
         <li><a href="{{ url_for('shifts_form') }}">Add shift</a></li>
         <li><a href="{{ url_for('users_index') }}">See employees</a></li>
     {% endif %}
