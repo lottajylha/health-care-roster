@@ -10,8 +10,8 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///roster.db"    
-    app.config["SQLALCHEMY_ECHO"] = True
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///roster.db"    
+app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
 
