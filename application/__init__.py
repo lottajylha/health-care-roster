@@ -12,7 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 if os.environ.get("HEROKU"):
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("postgres://snnlswkguzzund:752839388705fd379c1a0fdc85226a809ee3a6e632dd12721875db83e28deadb@ec2-23-21-186-85.compute-1.amazonaws.com:5432/dforhgl806k8lt")
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
 else:
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasks.db"    
     app.config["SQLALCHEMY_ECHO"] = True
