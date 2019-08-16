@@ -51,7 +51,6 @@ def auth_login():
         return render_template("auth/loginform.html", form = LoginForm())
 
     form = LoginForm(request.form)
-    # mahdolliset validoinnit
     
     username = form.username.data
     password = form.password.data

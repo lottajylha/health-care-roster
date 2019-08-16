@@ -1,3 +1,4 @@
+
 {% extends "layout.html" %}
 
 {% block body %}
@@ -14,6 +15,12 @@
         <th colspan="3">Doctors needed</th>
         <th colspan="3">Nurses needed</th>
         <th colspan="3">Practical nurses needed</th>
+        <th>Employees</th>
+        <th>Status</th>
+        {% if current_user.is_authenticated %}
+        <th>Logged working in this shift</th>
+        <th>Add shift for logged user or remove shift from logged user</th>
+        {% endif %}
       </tr>
     {% for shift in shifts %}
       <tr>
@@ -51,8 +58,27 @@
             <form method="POST" action="{{ url_for('shift_set_staff_needed', shift_id=shift.id) }}">
               <input type="submit" name="pn-" value="-"/>
             </form>
+          </td>
+          <td>
+          {% for user in employees[loop.index0] %}
+            {{ user }}
+          {% endfor %}
         </td>
+        <td>{{status[loop.index0] }}</td>
+        {% if current_user.is_authenticated %}
+          <td>
+            {% for value in usershifts[loop.index0] %}
+              {{ value }}
+            {% endfor %}
+          </td>
+          <td>
+            <form method="POST" action="{{ url_for('set_shift', shift_id=shift.id, user_id=current_user.id) }}">
+              <input type="submit" value="Change"/>
+            </form>
+          </td>
+        {% endif %}
       </tr>
       {% endfor %}
+      
 </table>
 {% endblock %}

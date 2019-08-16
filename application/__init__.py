@@ -17,10 +17,10 @@ login_manager.init_app(app)
 login_manager.login_view = "auth_login"
 login_manager.login_message = "Please login to use this functionality."
 
-from application.auth.models import User
 from application.roster import shifts
 from application.roster import views
 from application.auth import models
+from application.auth.models import User
 from application.auth import views
 from application.users import views
 

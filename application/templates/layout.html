@@ -7,23 +7,21 @@
 
   <body>
     {% if current_user.is_authenticated %}
-      <p>
         User {{ current_user.name }} is logged in. 
         <ul>
           <li><a href="{{ url_for('auth_logout') }}">Log out</a></li>
-          <li><a href="{{ url_for('shifts_form') }}">Add shift</a></li>
-      </p>
+          <li><a href="{{ url_for('get_info', user_id=current_user.id) }}">My shifts</a></li>
     {% else %}
         <li><a href="{{ url_for('auth_login') }}">Log in</a></li>
         <li><a href="{{ url_for('signup_form') }}">Sign up</a></li>
     {% endif %}
         <li><a href="{{ url_for('roster_index') }}">See roster</a></li>
     {% if current_user.position == 'employer' %}
+        <li><a href="{{ url_for('shifts_form') }}">Add shift</a></li>
         <li><a href="{{ url_for('users_index') }}">See employees</a></li>
     {% endif %}
     {% block body %}
-      <p>
-      </p>
+      <p></p>
     {% endblock %}
   </body>
 </html>

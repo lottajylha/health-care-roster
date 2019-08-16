@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, RadioField, validators
+from wtforms import IntegerField, RadioField, SubmitField, validators
 
 class ShiftForm(FlaskForm):
 
@@ -31,6 +31,7 @@ class ShiftForm(FlaskForm):
     doctorsNeeded = IntegerField("Doctors needed", [validators.NumberRange(min=0, max=15)])
     nursesNeeded = IntegerField("Nurses needed", [validators.NumberRange(min=0, max=15)])
     practicalNursesNeeded = IntegerField("Practical nurses needed", [validators.NumberRange(min=0, max=15)])
- 
+    addshift = SubmitField("Add shift")
+
     class Meta:
         csrf = False

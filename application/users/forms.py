@@ -2,8 +2,6 @@ from flask_wtf import FlaskForm
 from wtforms import IntegerField, RadioField, validators
 from application.auth.models import User
 
-
-
 class UsersForm(FlaskForm):
     
     userform = RadioField("Employee", [validators.Required()], choices=[])
