@@ -1,5 +1,7 @@
 from flask import Flask
 from flask_bcrypt import Bcrypt
+import sys
+import logging
 
 app = Flask(__name__)
 
