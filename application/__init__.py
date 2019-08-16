@@ -2,11 +2,18 @@ from flask import Flask
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
+
 bcrypt = Bcrypt(app)
 
 from flask_sqlalchemy import SQLAlchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///roster.db"
-app.config["SQLALCHEMY_ECHO"] = True
+
+import os
+
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///roster.db"    
+    app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
 
@@ -32,7 +39,9 @@ app.config["SECRET_KEY"] = urandom(32)
 def load_user(user_id):
     return User.query.get(user_id)
 
+try: 
+    db.create_all()
+except:
+    pass
+
 from application import views
-
-
-db.create_all()
