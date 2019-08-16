@@ -10,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 if os.environ.get("HEROKU"):
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("postgres://mqnevcyqglnvvt:1b731a8ee6ee13309e34cda9e3f7c70844bfade93119013aa29d7a3cbb1c7b05@ec2-54-163-226-238.compute-1.amazonaws.com:5432/d6lkkr0943c0mm")
 else:
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///roster.db"    
     app.config["SQLALCHEMY_ECHO"] = True

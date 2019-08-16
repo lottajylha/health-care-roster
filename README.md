@@ -8,7 +8,6 @@ Kirjautuneet työntekijät voivat ilmottautua työvuoroon, mikäli siihen ei ole
 
 Työnantaja voi lisätä uusia työvuoroja ja nähdä rekisteröityneet työntekijät.
 
-Tietokantakaavio:
-![Tietokantakaavio](https://user-images.githubusercontent.com/36735637/61955653-258d9f80-afc4-11e9-9df8-bd9abc9d2e9e.png)
+[Käyttöohje](https://github.com/lottajylha/health-care-roster/blob/master/documentation/user_manual.md)
 
 ## Sovellus Herokussa: [https://health-care-roster.herokuapp.com/](https://health-care-roster.herokuapp.com/)
