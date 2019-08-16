@@ -18,7 +18,7 @@ class User(db.Model):
 
     name = db.Column(db.String(100), nullable=False)
     username = db.Column(db.String(10), nullable=False)
-    password = db.Column(db.String(10), nullable=False)
+    password = db.Column(db.String(100), nullable=False)
     position = db.Column(db.String(20), nullable=False)
     weekMin = db.Column(db.Integer, nullable=False)
     weekMax = db.Column(db.Integer, nullable=False)

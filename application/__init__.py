@@ -17,6 +17,9 @@ else:
 
 db = SQLAlchemy(app)
 
+from os import urandom
+app.config["SECRET_KEY"] = urandom(32)
+
 from flask_login import LoginManager
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -30,10 +33,7 @@ from application.auth import models
 from application.auth.models import User
 from application.auth import views
 from application.users import views
-
-
-from os import urandom
-app.config["SECRET_KEY"] = urandom(32)
+from application import views
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -43,5 +43,3 @@ try:
     db.create_all()
 except:
     pass
-
-from application import views
