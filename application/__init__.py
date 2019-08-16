@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_bcrypt import Bcrypt
+from sqlalchemy.sql import text
 
 app = Flask(__name__)
 
@@ -9,9 +10,11 @@ from flask_sqlalchemy import SQLAlchemy
 
 import os
 
-
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///roster.db"    
-app.config["SQLALCHEMY_ECHO"] = True
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("postgres://snnlswkguzzund:752839388705fd379c1a0fdc85226a809ee3a6e632dd12721875db83e28deadb@ec2-23-21-186-85.compute-1.amazonaws.com:5432/dforhgl806k8lt")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasks.db"    
+    app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
 
@@ -39,5 +42,9 @@ def load_user(user_id):
 
 try: 
     db.create_all()
+    if os.environ.get("HEROKU"):
+         stmt = text("INSERT INTO account (name, username, password, position, weekMin, weekMax)"
+                    " VALUES ('Username', 'username', '|$2b$12$3EqwG.UrapGKnsi.Sg2jxuL.WKvFO06Og5ZXOUpqNkfQt0G4TRYI2', 'Employer', 0, 0);")
+        res = db.engine.execute(stmt)
 except:
     pass
