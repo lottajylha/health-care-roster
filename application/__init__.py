@@ -43,7 +43,7 @@ def load_user(user_id):
 try: 
     db.create_all()
     if os.environ.get("HEROKU"):
-         stmt = text("INSERT INTO account (name, username, password, position, weekMin, weekMax)"
+        stmt = text("INSERT INTO account (name, username, password, position, weekMin, weekMax)"
                     " VALUES ('Username', 'username', '|$2b$12$3EqwG.UrapGKnsi.Sg2jxuL.WKvFO06Og5ZXOUpqNkfQt0G4TRYI2', 'Employer', 0, 0);")
         db.engine.execute(stmt)
 except:
