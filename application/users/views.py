@@ -31,13 +31,13 @@ def users_index():
 def set_weekhours(user_id):
     form = UsersForm(request.form)
     hours = User.get_weekminmax(user_id)
-    weekMin = hours[0]
-    weekMax = hours[0]
+    weekmin = hours[0]
+    weekmax = hours[0]
     if form.weekMin.data:
-        weekMin = form.weekMin.data
+        weekmin = form.weekMin.data
     if form.weekMax.data:
-        weekMax = form.weekMax.data
-    User.set_weekminmax(user_id, weekMin, weekMax)
+        weekmax = form.weekMax.data
+    User.set_weekminmax(user_id, weekmin, weekmax)
   
     return redirect(url_for("users_index"))
 

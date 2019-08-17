@@ -77,13 +77,13 @@ def set_shift(shift_id, user_id):
         need_employees_in_shift = True
         user_position = User.get_position(user_id)
         if user_position == 'Doctor':
-            if Shift.doctorsNeeded_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Doctor') == 0:
+            if Shift.doctors_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Doctor') == 0:
                 need_employees_in_shift = False
         elif user_position == 'Nurse':
-            if Shift.nursesNeeded_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Nurse') == 0:
+            if Shift.nurses_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Nurse') == 0:
                 need_employees_in_shift = False
         elif user_position == 'Practical nurse':
-            if Shift.practicalNursesNeeded_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Practical nurse') == 0:
+            if Shift.practical_nurses_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Practical nurse') == 0:
                 need_employees_in_shift = False
         if need_employees_in_shift:
             User.add_shift(user_id, shift_id)
@@ -97,27 +97,27 @@ def shift_set_staff_needed(shift_id):
 
     if request.form.get("d+"):
         shift = Shift.query.get(shift_id)
-        shift.doctorsNeeded = shift.doctorsNeeded+1
+        shift.doctors_needed = shift.doctors_needed+1
         db.session().commit()
     elif request.form.get("d-"):
         shift = Shift.query.get(shift_id)
-        shift.doctorsNeeded = max(shift.doctorsNeeded-1,0)
+        shift.doctors_needed = max(shift.doctors_needed-1,0)
         db.session().commit()
     elif request.form.get("n+"):
         shift = Shift.query.get(shift_id)
-        shift.nursesNeeded = shift.nursesNeeded+1
+        shift.nurses_needed = shift.nurses_needed+1
         db.session().commit()
     elif request.form.get("n-"):
         shift = Shift.query.get(shift_id)
-        shift.nursesNeeded = max(shift.nursesNeeded-1,0)
+        shift.nurses_needed = max(shift.nurses_needed-1,0)
         db.session().commit()
     elif request.form.get("pn+"):
         shift = Shift.query.get(shift_id)
-        shift.practicalNursesNeeded = shift.practicalNursesNeeded+1
+        shift.practical_nurses_needed = shift.practical_nurses_needed+1
         db.session().commit()
     elif request.form.get("pn-"):
         shift = Shift.query.get(shift_id)
-        shift.practicalNursesNeeded = max(shift.practicalNursesNeeded-1,0)
+        shift.practical_nurses_needed = max(shift.practical_nurses_needed-1,0)
         db.session().commit()
 
     return redirect(url_for("roster_index"))

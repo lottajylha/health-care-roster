@@ -26,7 +26,7 @@
       <tr>
         <td>{{ shift.day }}</td>
         <td>{{ shift.hour }}</td>
-        <td>{{ shift.doctorsNeeded }}</td>
+        <td>{{ shift.doctors_needed }}</td>
         <td>
             <form method="POST" action="{{ url_for('shift_set_staff_needed', shift_id=shift.id) }}">
               <input type="submit" name="d+" value="+"/>
@@ -37,7 +37,7 @@
               <input type="submit" name="d-" value="-"/>
             </form>
         </td>
-        <td>{{ shift.nursesNeeded }}</td>
+        <td>{{ shift.nurses_needed }}</td>
         <td>
             <form method="POST" action="{{ url_for('shift_set_staff_needed', shift_id=shift.id) }}">
               <input type="submit" name="n+" value="+"/>
@@ -48,7 +48,7 @@
               <input type="submit" name="n-" value="-"/>
             </form>
         </td>
-        <td>{{ shift.practicalNursesNeeded }}</td>
+        <td>{{ shift.practical_nurses_needed }}</td>
         <td>
             <form method="POST" action="{{ url_for('shift_set_staff_needed', shift_id=shift.id) }}">
               <input type="submit" name="pn+" value="+"/>

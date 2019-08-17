@@ -20,8 +20,8 @@
       <tr>
         <td>{{ user.name }}</td>
         <td>{{ user.position }}</td>
-        <td>{{ user.weekMin }}</td>
-        <td>{{ user.weekMax }}</td>
+        <td>{{ user.weekmin }}</td>
+        <td>{{ user.weekmax }}</td>
         <form method="POST" action="{{ url_for('set_weekhours', user_id=user.id) }}">
             <td>{{ form.weekMin }} </td>
             <td>{{ form.weekMax }} </td>

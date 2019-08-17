@@ -8,21 +8,21 @@ class Shift(db.Model):
     day = db.Column(db.String(20), nullable=False)
     hour =  db.Column(db.String(5), nullable=False)
     accepted = db.Column(db.Boolean, nullable=False)
-    doctorsNeeded = db.Column(db.Integer, nullable=False)
-    nursesNeeded = db.Column(db.Integer, nullable=False)
-    practicalNursesNeeded = db.Column(db.Integer, nullable=False)
+    doctors_needed = db.Column(db.Integer, nullable=False)
+    nurses_needed = db.Column(db.Integer, nullable=False)
+    practical_nurses_needed = db.Column(db.Integer, nullable=False)
     users = db.relationship(
         "User",
         secondary=association_table,
         back_populates="shifts")
 
-    def __init__(self, day, hour, doctorsNeeded = 0, nursesNeeded = 0, practicalNursesNeeded = 0):
+    def __init__(self, day, hour, doctors_needed = 0, nurses_needed = 0, practical_nurses_needed = 0):
         self.day = day
         self.hour = hour
         self.accepted = False
-        self.doctorsNeeded = doctorsNeeded
-        self.nursesNeeded = nursesNeeded
-        self.practicalNursesNeeded = practicalNursesNeeded
+        self.doctors_needed = doctors_needed
+        self.nurses_needed = nurses_needed
+        self.practical_nurses_needed = practical_nurses_needed
 
     @staticmethod
     def find_users(shift_id):
@@ -49,8 +49,8 @@ class Shift(db.Model):
         return res.first()[0]
 
     @staticmethod
-    def practicalNursesNeeded_shift(shift_id):
-        stmt = text("SELECT practicalNursesNeeded FROM shift"
+    def practical_nurses_needed_shift(shift_id):
+        stmt = text("SELECT practical_nurses_needed FROM shift"
                     " WHERE shift.id = :shiftparam;").params(shiftparam=shift_id)
         res = db.engine.execute(stmt)
         value = 0
@@ -59,8 +59,8 @@ class Shift(db.Model):
         return int(value)
 
     @staticmethod
-    def nursesNeeded_shift(shift_id):
-        stmt = text("SELECT nursesNeeded FROM shift"
+    def nurses_needed_shift(shift_id):
+        stmt = text("SELECT nurses_needed FROM shift"
                     " WHERE shift.id = :shiftparam;").params(shiftparam=shift_id)
         res = db.engine.execute(stmt)
         value = 0
@@ -70,8 +70,8 @@ class Shift(db.Model):
 
 
     @staticmethod
-    def doctorsNeeded_shift(shift_id):
-        stmt = text("SELECT doctorsNeeded FROM shift"
+    def doctors_needed_shift(shift_id):
+        stmt = text("SELECT doctors_needed FROM shift"
                     " WHERE shift.id = :shiftparam;").params(shiftparam=shift_id)
         res = db.engine.execute(stmt)
         value = 0
@@ -81,9 +81,9 @@ class Shift(db.Model):
 
     @staticmethod
     def status(shift_id):
-        practicalnurses = Shift.practicalNursesNeeded_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Practical nurse')
-        nurses = Shift.nursesNeeded_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Nurse')
-        doctors = Shift.doctorsNeeded_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Doctor')
+        practicalnurses = Shift.practical_nurses_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Practical nurse')
+        nurses = Shift.nurses_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Nurse')
+        doctors = Shift.doctors_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Doctor')
         if nurses == 0 and doctors == 0 and practicalnurses == 0:
             return "Accepted"
         else:
