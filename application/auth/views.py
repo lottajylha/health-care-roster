@@ -39,7 +39,7 @@ def auth_signup():
         
         encoded_password = form.password.data.encode('utf-8')
         password_hash = flask_bcrypt.generate_password_hash(encoded_password, 10)
-        user = User(form.name.data, form.username.data, password_hash.decode('utf8'), 'Employer')
+        user = User(form.name.data, form.username.data, password_hash.decode('utf8'), form.position.data)
         print("r: lomakkeen data: " + str(form.password.data))
         print("r: encodattu lomakkeen data: " + str(encoded_password))
         print("r: decodattu hash encodatusta lomakkeen datasta, joka talletetaan db:hen: " + str(password_hash.decode('utf8')))
