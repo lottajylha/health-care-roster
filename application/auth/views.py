@@ -36,10 +36,13 @@ def auth_signup():
         return render_template("auth/signupform.html", form = form,
                             error = "Username is not available.")
     else:
+        
         encoded_password = form.password.data.encode('utf-8')
         password_hash = flask_bcrypt.generate_password_hash(encoded_password, 10)
-        user = User(form.name.data, form.username.data, password_hash, form.position.data)
-
+        user = User(form.name.data, form.username.data, password_hash.decode('utf8'), form.position.data)
+        print("r: lomakkeen data: " + str(form.password.data))
+        print("r: encodattu lomakkeen data: " + str(encoded_password))
+        print("r: decodattu hash encodatusta lomakkeen datasta, joka talletetaan db:hen: " + str(password_hash.decode('utf8')))
         db.session().add(user)
         db.session().commit()
 
@@ -68,6 +71,9 @@ def auth_login():
             return render_template("auth/loginform.html", form = form,
                                 error = "Password is incorrect.")
         else: 
+            print("k: lomakkeen data: " + str(form.password.data))
+            print("k: encodattu lomakkeen data: " + str(password))
+            print("k: salasana db:ssä:  " + str(password_hash))
             login_user(user)
             return redirect(url_for("roster_index"))
 
