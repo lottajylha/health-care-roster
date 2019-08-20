@@ -29,7 +29,7 @@ class Shift(db.Model):
         stmt = text("SELECT Account.name, Account.position"
                     " FROM account JOIN usershift ON usershift.account_id = account.id"
                     " JOIN shift ON usershift.shift_id = :param AND shift.id = :param"
-                    " GROUP BY Account.name;").params(param=shift_id)
+                    " GROUP BY Account.name, Account.position;").params(param=shift_id)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
