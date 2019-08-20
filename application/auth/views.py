@@ -1,4 +1,4 @@
-from application import app, db, bcrypt
+from application import app, db, flask_bcrypt
 from flask import render_template, request, redirect, url_for
 from application.auth.models import User
 from application.auth.forms import LoginForm, SignupForm
@@ -35,8 +35,9 @@ def auth_signup():
     if duplicate_username:
         return render_template("auth/signupform.html", form = form,
                             error = "Username is not available.")
-    else: 
-        password_hash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+    else:
+        encoded_password = form.password.data.encode('utf-8')
+        password_hash = flask_bcrypt.generate_password_hash(encoded_password, 10)
         user = User(form.name.data, form.username.data, password_hash, form.position.data)
 
         db.session().add(user)
@@ -62,7 +63,7 @@ def auth_login():
                             error = "Username was not found.")
     else:
         password_hash = user.password
-        is_password_correct = bcrypt.check_password_hash(password_hash, password)
+        is_password_correct = flask_bcrypt.check_password_hash(password_hash, password)
         if not is_password_correct:
             return render_template("auth/loginform.html", form = form,
                                 error = "Password is incorrect.")
