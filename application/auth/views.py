@@ -54,7 +54,7 @@ def auth_login():
     form = LoginForm(request.form)
     
     username = form.username.data
-    password = form.password.data
+    password = form.password.data.encode('utf-8')
     
     user = User.query.filter_by(username=username).first()
     
