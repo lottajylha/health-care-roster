@@ -36,7 +36,7 @@ def auth_signup():
         return render_template("auth/signupform.html", form = form,
                             error = "Username is not available.")
     else: 
-        password_hash = bcrypt.generate_password_hash(form.password.data)
+        password_hash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(form.name.data, form.username.data, password_hash, form.position.data)
 
         db.session().add(user)
