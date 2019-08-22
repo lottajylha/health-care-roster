@@ -53,7 +53,7 @@ def roster_index():
     status = []
     is_user_shift = []
     for shift in shifts:
-        shift_employees = Shift.find_users(shift.id)
+        shift_employees = Shift.find_employees_in_shift(shift.id)
         if len(shift_employees) > 0:
             employees.append(shift_employees)
         else:
@@ -77,13 +77,13 @@ def set_shift(shift_id, user_id):
         need_employees_in_shift = True
         user_position = User.get_position(user_id)
         if user_position == 'Doctor':
-            if Shift.doctors_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Doctor') == 0:
+            if Shift.doctors_needed_shift(shift_id) - Shift.count_employees_in_shift(shift_id, 'Doctor') == 0:
                 need_employees_in_shift = False
         elif user_position == 'Nurse':
-            if Shift.nurses_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Nurse') == 0:
+            if Shift.nurses_needed_shift(shift_id) - Shift.count_employees_in_shift(shift_id, 'Nurse') == 0:
                 need_employees_in_shift = False
         elif user_position == 'Practical nurse':
-            if Shift.practical_nurses_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Practical nurse') == 0:
+            if Shift.practical_nurses_needed_shift(shift_id) - Shift.count_employees_in_shift(shift_id, 'Practical nurse') == 0:
                 need_employees_in_shift = False
         if need_employees_in_shift:
             User.add_shift(user_id, shift_id)

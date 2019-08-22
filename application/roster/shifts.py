@@ -25,7 +25,7 @@ class Shift(db.Model):
         self.practical_nurses_needed = practical_nurses_needed
 
     @staticmethod
-    def find_users(shift_id):
+    def find_employees_in_shift(shift_id):
         stmt = text("SELECT Account.name, Account.position"
                     " FROM account JOIN usershift ON usershift.account_id = account.id"
                     " JOIN shift ON usershift.shift_id = :param AND shift.id = :param"
@@ -39,12 +39,12 @@ class Shift(db.Model):
         return response
     
     @staticmethod
-    def employees_in_shift(shift_id, position):
+    def count_employees_in_shift(shift_id, position):
         stmt = text("SELECT COUNT(*) FROM (SELECT Account.name, Account.position"
                     " FROM account, Usershift WHERE Usershift.shift_id = :shiftparam"
                     " AND Usershift.account_id = account.id "
                     " AND Account.position = :positionparam"
-                    " GROUP BY Account.name);").params(shiftparam=shift_id, positionparam=position)
+                    " GROUP BY Account.name, Account.position) AS alias;").params(shiftparam=shift_id, positionparam=position)
         res = db.engine.execute(stmt)
         return res.first()[0]
 
