@@ -8,6 +8,6 @@ Kirjautuneet työntekijät voivat ilmottautua työvuoroon, mikäli siihen ei ole
 
 Työnantaja voi lisätä uusia työvuoroja ja nähdä rekisteröityneet työntekijät.
 
-[Käyttöohje](https://github.com/lottajylha/health-care-roster/blob/master/documentation/user_manual.md)
+[Käyttöohje ja testitunnukset](https://github.com/lottajylha/health-care-roster/blob/master/documentation/user_manual.md)
 
 ## Sovellus Herokussa: [https://health-care-roster.herokuapp.com/](https://health-care-roster.herokuapp.com/)

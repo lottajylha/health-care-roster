@@ -1,6 +1,13 @@
 # Käyttöohje
 
-Sovellusta voi käyttää kirjautuneena tai kirjautumatta. Ilman kirjautumista käyttäjä voi tarkastella työvuorolistaa, josta näkyy työvuorolistaan lisättyjen vuorojen
+Sovellusta voi käyttää kirjautuneena tai kirjautumatta. Testitunnukset Herokussa olevaan sovellukseen työntekijä-käyttäjälle:
+- käyttäjätunnus: herokuuser
+- salasana: herokuuser
+ja työnantaja-käyttäjälle:
+- käyttäjätunnus: employer
+- salasana: employer
+
+Ilman kirjautumista käyttäjä voi tarkastella työvuorolistaa, josta näkyy työvuorolistaan lisättyjen vuorojen
 - päivämäärä
 - kellonaika
 - vuoroon tarvittavien lääkäreiden määrä
