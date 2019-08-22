@@ -93,7 +93,7 @@ class User(db.Model):
         stmt = text("SELECT Shift.day, Shift.hour"
                     " FROM shift JOIN usershift ON usershift.shift_id = shift.id"
                     " JOIN account ON usershift.account_id = :param AND account.id = :param"
-                    " GROUP BY shift.day;").params(param=user_id)
+                    " GROUP BY shift.day, shift.hour;").params(param=user_id)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
