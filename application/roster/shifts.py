@@ -80,9 +80,9 @@ class Shift(db.Model):
 
     @staticmethod
     def status(shift_id):
-        practicalnurses = Shift.practical_nurses_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Practical nurse')
-        nurses = Shift.nurses_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Nurse')
-        doctors = Shift.doctors_needed_shift(shift_id) - Shift.employees_in_shift(shift_id, 'Doctor')
+        practicalnurses = Shift.practical_nurses_needed_shift(shift_id) - Shift.count_employees_in_shift(shift_id, 'Practical nurse')
+        nurses = Shift.nurses_needed_shift(shift_id) - Shift.count_employees_in_shift(shift_id, 'Nurse')
+        doctors = Shift.doctors_needed_shift(shift_id) - Shift.count_employees_in_shift(shift_id, 'Doctor')
         if nurses == 0 and doctors == 0 and practicalnurses == 0:
             return "Accepted"
         else:
