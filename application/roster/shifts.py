@@ -41,9 +41,8 @@ class Shift(db.Model):
     @staticmethod
     def count_employees_in_shift(shift_id, position):
         stmt = text("SELECT COUNT(*) FROM (SELECT Account.name, Account.position"
-                    " FROM account, Usershift WHERE Usershift.shift_id = :shiftparam"
-                    " AND Usershift.account_id = account.id "
-                    " AND Account.position = :positionparam"
+                    " FROM Account, Usershift WHERE Usershift.shift_id = :shiftparam"
+                    " AND Usershift.account_id = account.id AND Account.position = :positionparam"
                     " GROUP BY Account.name, Account.position) AS alias;").params(shiftparam=shift_id, positionparam=position)
         res = db.engine.execute(stmt)
         return res.first()[0]
