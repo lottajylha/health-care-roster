@@ -1,3 +1,3 @@
 # Tietokantakaavio
 
-![Tietokantakaavio](https://user-images.githubusercontent.com/36735637/61955653-258d9f80-afc4-11e9-9df8-bd9abc9d2e9e.png)
+![Tietokantakaavio](https://user-images.githubusercontent.com/36735637/64445636-a2418c80-d0df-11e9-85af-2fc831381807.jpg)

@@ -30,15 +30,23 @@ def users_index():
 @login_required('Employer')
 def set_weekhours(user_id):
     form = UsersForm(request.form)
+    if not form.validate():
+        return render_template("users/userlistform.html", users=User.query.all(), form = form)
+
     hours = User.get_weekminmax(user_id)
-    weekmin = hours[0]
-    weekmax = hours[0]
-    if form.weekMin.data:
+    weekmin = hours[0][0]
+    weekmax = hours[0][1]
+    if not form.weekMin.data == None:
         weekmin = form.weekMin.data
-    if form.weekMax.data:
+    if not form.weekMax.data == None:
         weekmax = form.weekMax.data
-    User.set_weekminmax(user_id, weekmin, weekmax)
-  
+    
+    if weekmax >= weekmin:
+        User.set_weekminmax(user_id, weekmin, weekmax)
+        return redirect(url_for("users_index"))
+    else:
+        return render_template("users/userlistform.html", users=User.query.all(), form=form, error="Week minimum must be less than week maximum.")
+    
     return redirect(url_for("users_index"))
 
 @app.route("/users/get/<user_id>/", methods=["GET"])

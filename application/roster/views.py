@@ -91,7 +91,7 @@ def set_shift(shift_id, user_id):
     return redirect(url_for("roster_index"))
 
 
-@app.route("/roster/<shift_id>/", methods=["POST"])
+@app.route("/roster/<shift_id>/increase", methods=["POST"])
 @login_required('Employer')
 def shift_set_staff_needed(shift_id):
 
@@ -122,4 +122,8 @@ def shift_set_staff_needed(shift_id):
 
     return redirect(url_for("roster_index"))
 
-
+@app.route("/roster/<shift_id>/remove", methods=["POST"])
+@login_required('Employer')
+def delete_shift(shift_id):
+    Shift.delete_shift(shift_id)
+    return redirect(url_for("roster_index"))

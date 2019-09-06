@@ -31,7 +31,7 @@ class ShiftForm(FlaskForm):
     doctorsNeeded = IntegerField("Doctors needed", [validators.NumberRange(min=0, max=15)])
     nursesNeeded = IntegerField("Nurses needed", [validators.NumberRange(min=0, max=15)])
     practicalNursesNeeded = IntegerField("Practical nurses needed", [validators.NumberRange(min=0, max=15)])
-    addshift = SubmitField("Add shift")
+    addshift = SubmitField("Add shift", [validators.Required()])
 
     class Meta:
         csrf = False

@@ -22,13 +22,26 @@
         <td>{{ user.position }}</td>
         <td>{{ user.weekmin }}</td>
         <td>{{ user.weekmax }}</td>
+        
         <form method="POST" action="{{ url_for('set_weekhours', user_id=user.id) }}">
             <td>{{ form.weekMin }} </td>
             <td>{{ form.weekMax }} </td>
-            <th><input type="submit" value="Set weekhours"/></th>
+          <td><input type="submit" value="Set weekhours"/></td>
+        </form>
+        
     {% endfor %}
         </form>
       </tr>
-      
+    <tr>{{ error }}</tr>
+    <ul>
+      {% for error in form.weekMin.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    <ul>
+      {% for error in form.weekMax.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+</ul>
 </table>
 {% endblock %}

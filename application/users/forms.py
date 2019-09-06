@@ -4,9 +4,8 @@ from application.auth.models import User
 
 class UsersForm(FlaskForm):
     
-    userform = RadioField("Employee", [validators.Required()], choices=[])
-    weekMin = IntegerField("Minimum hours", [validators.NumberRange(min=0, max=50)])
-    weekMax = IntegerField("Maximum hours", [validators.NumberRange(min=0, max=50)])
+    weekMin = IntegerField("Minimum hours", [validators.Optional(strip_whitespace=True),validators.NumberRange(min=0, max=50, message="Week minimum must be an integer between 0 and 50.")])
+    weekMax = IntegerField("Maximum hours", [validators.Optional(strip_whitespace=True),validators.NumberRange(min=0, max=50, message="Week maximum must be an integer between 0 and 50.")])
  
     class Meta:
         csrf = False

@@ -43,5 +43,11 @@ from application import views
 
 try: 
     db.create_all()
+    employer_created = User.query.filter_by(username="employer").first()
+    if employer_created == None:
+        password = "$2b$10$O7QM/L0fZE9PtYtA2o20auy8jgMcoiUgie7/AzI8Vrb9y1keXm6J2"
+        employer = User("Employer", "employer", password.decodecode('utf8'), "Employer")
+        db.session().add(employer)
+        db.session().commit()
 except:
     pass

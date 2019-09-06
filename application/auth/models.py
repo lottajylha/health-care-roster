@@ -75,22 +75,22 @@ class User(db.Model):
         res = db.engine.execute(stmt)
         response = []
         for row in res:
-            response.append(int(row[0]))
-
+            response.append([int(row[0]),int(row[1])])
         return response
 
     @staticmethod
     def set_weekminmax(user_id, weekmin, weekmax):
-        stmt = text("UPDATE account set weekmin = :minparam,"
-                    " weekmax = :maxparam"
-                    " WHERE account.id = :idparam;").params(minparam=weekmin, maxparam=weekmax, idparam=user_id)
-        res = db.engine.execute(stmt)
+        if (weekmin <= weekmax):
+            stmt = text("UPDATE account set weekmin = :minparam,"
+                        " weekmax = :maxparam"
+                        " WHERE account.id = :idparam;").params(minparam=weekmin, maxparam=weekmax, idparam=user_id)
+            res = db.engine.execute(stmt)
 
     @staticmethod
     def find_user_shifts(user_id):
         user_position = User.get_position(user_id)
         
-        stmt = text("SELECT Shift.day, Shift.hour"
+        stmt = text("SELECT shift.day, shift.hour"
                     " FROM shift JOIN usershift ON usershift.shift_id = shift.id"
                     " JOIN account ON usershift.account_id = :param AND account.id = :param"
                     " GROUP BY shift.day, shift.hour;").params(param=user_id)

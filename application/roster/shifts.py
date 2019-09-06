@@ -94,3 +94,11 @@ class Shift(db.Model):
             if practicalnurses > 0:
                 statusstr += (str(practicalnurses) + " practical nurses missing ")
             return statusstr
+
+    @staticmethod
+    def delete_shift(shiftid):
+        stmt = text("DELETE FROM usershift WHERE shift_id = :param;").params(param=shiftid)
+        res = db.engine.execute(stmt)
+        stmt = text("DELETE FROM shift WHERE shift.id = :param;").params(param=shiftid)
+        res = db.engine.execute(stmt)
+        
