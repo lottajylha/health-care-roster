@@ -6,7 +6,7 @@ Sovellusta voi käyttää paikallisesti ja Herokussa. Sovellus toimii samalla ta
 
 Sovelluksen asennus ja suoritus paikallisesti:
 - Asenna tarvittaessa Python, virtualenv ja sqlite3
-- Lataa Health Care App -sovelluksen zip-tiedosto ja pura se TAI kloonaa projekti koneellesi komennolla _git_ _clone_ _git@github.com:lottajylha/health-care-roster.git_
+Lataa Health Care App -sovelluksen zip-tiedosto ja pura se TAI kloonaa projekti koneellesi komennolla _git_ _clone_  _git_<span></span>_@github._<span></span>_com:lottajylha/health-care-roster.git_
 - Luo virtuaaliympäristö ladatun projektin juureen komennolla _py -m venv venv_
 - Ota virtuaaliympäristö käyttöön projektin juuressa komennolla _source venv/Scripts/activate_
 - Asetetaan sovelluksen riippuvuudet tiedostosta requirements.txt komennolla _pip_ _install_ _-r_ _requirements.txt_
@@ -18,11 +18,12 @@ Sovelluksen käyttö Herokussa
 ## Käyttöohje
 
 Sovellusta voi käyttää kirjautuneena tai kirjautumatta. Testitunnukset sekä Herokun että paikallisesti suoritettavan sovelluksen työnantaja-käyttäjälle ovat
-- käyttäjätunnus: herokuuser
-- salasana: herokuuser
-ja työntekijä-käyttäjälle ovat
 - käyttäjätunnus: employer
 - salasana: employer
+
+ja työntekijä-käyttäjälle ovat
+- käyttäjätunnus: herokuuser
+- Ssalasana: herokuuser
 
 ### Ilman kirjautumista
 Ilman kirjautumista käyttäjä voi tarkastella työvuorolistaa, joka avautuu sovelluksen käynnistyessä ja löytyy polusta _/roster_. Työvuorolista on taulukko, jossa näkyy sovelluksen tietokantaan lisättyjen vuorojen
