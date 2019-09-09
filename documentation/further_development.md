@@ -5,6 +5,8 @@
 - Tietokannan lisättäville riveille asetetaan yksinkertaiset, helposti arvattavat id-arvot...
 - ... ja samoja arvoja käytetään polun osotteissa sellaisenaan.
 - Työantaja ei voi rekisteröityä sovelluksessa.
+- Listojen järjestys muuttuu esimerkiksi työvoiman määrän päivityksessä, työvuorot voisi järjestää päivämäärän mukaan.
+- Kun työnantaja yrittää muuttaa yhden työntekijän viikkotuntimäärää virheellisellä syötteellä, virheellinen syöte jää näkymään (kaikkiin kenttiin).
 
 ## Jatkokehitysideoita
 - Kovakoodatun päivämäärä- ja kellonaikalistan sijaan voisi käyttää jotain valmista kalenteria.
